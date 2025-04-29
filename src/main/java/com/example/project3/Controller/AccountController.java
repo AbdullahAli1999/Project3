@@ -38,33 +38,33 @@ public class AccountController {
 
     //Active Account
     @PutMapping("/active/{account_id}")
-    public ResponseEntity activeAccount(@PathVariable Integer account_id){
+    public ResponseEntity activeAccount(@AuthenticationPrincipal User user,@PathVariable Integer account_id){
         accountService.activeAccount(account_id);
         return ResponseEntity.status(200).body(new ApiResponse("Account activated"));
     }
 
     //deposit
     @PostMapping("/deposit/{account_id}/{amount}")
-    public ResponseEntity deposit(@PathVariable Integer account_id,@PathVariable Double amount){
+    public ResponseEntity deposit(@AuthenticationPrincipal User user,@PathVariable Integer account_id,@PathVariable Double amount){
         accountService.deposit(account_id,amount);
         return ResponseEntity.status(200).body(new ApiResponse("Deposit : " + amount));
     }
 
     //withdraw
     @PostMapping("/withdraw/{account_id}/{amount}")
-    public ResponseEntity withdraw(@PathVariable Integer account_id,@PathVariable Double amount){
+    public ResponseEntity withdraw(@AuthenticationPrincipal User user,@PathVariable Integer account_id,@PathVariable Double amount){
         accountService.withdraw(account_id,amount);
         return ResponseEntity.status(200).body(new ApiResponse(amount + "Withdrawn"));
     }
 
     //transfer money
     @PutMapping("/transfer/{id1}/{id2}/{amount}")
-    public ResponseEntity transferMoney(@PathVariable Integer id1,@PathVariable Integer id2,@PathVariable Double amount){
+    public ResponseEntity transferMoney(@AuthenticationPrincipal User user,@PathVariable Integer id1,@PathVariable Integer id2,@PathVariable Double amount){
         accountService.transferMoney(id1, id2, amount);
         return ResponseEntity.status(200).body(new ApiResponse("Transfer done"));
     }
     @PutMapping("/block/{id}")
-    public ResponseEntity blockAccount(@PathVariable Integer id){
+    public ResponseEntity blockAccount(@AuthenticationPrincipal User user,@PathVariable Integer id){
         accountService.blockAccount(id);
         return ResponseEntity.status(200).body(new ApiResponse("Account Blocked"));
     }

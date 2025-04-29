@@ -38,7 +38,7 @@ public class CustomerController {
 
     //delete
     @DeleteMapping("/del/{customer_id}")
-    public ResponseEntity deleteCustomer(@PathVariable Integer customer_id){
+    public ResponseEntity deleteCustomer(@AuthenticationPrincipal User user,@PathVariable Integer customer_id){
         customerService.deleteCustomer(customer_id);
         return ResponseEntity.status(200).body(new ApiResponse("Deleted Customer"));
     }

@@ -36,7 +36,7 @@ public class EmployeeController {
         return ResponseEntity.status(200).body(new ApiResponse("Updated emp"));
     }
     @DeleteMapping("/del/{emp_id}")
-    public ResponseEntity deleteEmployee(@PathVariable Integer emp_id){
+    public ResponseEntity deleteEmployee(@AuthenticationPrincipal User user,@PathVariable Integer emp_id){
         employeeService.deleteEmployee(emp_id);
         return ResponseEntity.status(200).body(new ApiResponse("Deleted employee"));
     }
