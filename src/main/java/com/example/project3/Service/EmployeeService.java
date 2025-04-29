@@ -32,15 +32,6 @@ public class EmployeeService {
         employeeRepository.save(employee);
     }
 
-//    public void reg(EmployeeDTO employeeDTO, User user){
-//        user.setRole("EMPLOYEE");
-//        String hashPassword = new BCryptPasswordEncoder().encode(user.getPassword());
-//        user.setPassword(hashPassword);
-//        authRepository.save(user);
-//
-//        Employee employee = new Employee(null, employeeDTO.getPosition(), employeeDTO.getSalary(), user);
-//        employeeRepository.save(employee);
-//    }
 
     public void updateEmployee(Integer emp_id,EmployeeDTO employeeDTO){
         Employee oldEmp = employeeRepository.findEmployeeById(emp_id);
